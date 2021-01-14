@@ -10,14 +10,26 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Colors from "../../constants/Colors";
 import * as cartActions from "../../store/actions/Cart";
+import * as wishActions from "../../store/actions/wish";
 
 const ProductDetailsScreen = (props) => {
   const ProductId = props.navigation.getParam("productId");
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((prod) => prod.id === ProductId)
   );
-  console.log(selectedProduct.inStock);
+  const wish = useSelector((state) => state.wish.wish);
+
+  const wishList = wish.find((el) => el.id === ProductId);
+
   const dispatch = useDispatch();
+
+  const AddToWish = (item) => {
+    dispatch(wishActions.addtoWish(item));
+  };
+
+  const removeWishHandler = (id) => {
+    dispatch(wishActions.removeWish(id));
+  };
 
   return (
     <ScrollView>
@@ -34,6 +46,24 @@ const ProductDetailsScreen = (props) => {
         <Text style={styles.description}>{selectedProduct.description}</Text>
       </View>
       <View style={styles.action}>
+        {wishList ? (
+          <Button
+            color={Colors.primary}
+            title="Remove from Wishlist"
+            onPress={() => {
+              removeWishHandler(ProductId);
+            }}
+          />
+        ) : (
+          <Button
+            color={Colors.primary}
+            title="Add to Wishlist"
+            onPress={() => {
+              AddToWish(selectedProduct);
+            }}
+          />
+        )}
+
         <Button
           color={Colors.primary}
           title={selectedProduct.inStock ? "add to cart" : "Out of Stock"}
@@ -65,6 +95,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   action: {
+    flexDirection: "row",
+    justifyContent: "space-around",
     marginVertical: 10,
     alignItems: "center",
   },

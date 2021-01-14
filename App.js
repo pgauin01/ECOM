@@ -9,6 +9,7 @@ import NavigationContainer from "./navigation/NavigationContainer";
 import AuthReducer from "./store/reducers/Auth";
 import AddressReducer from "./store/reducers/Address";
 import AdminReducer from "./store/reducers/Admin";
+import wishReducer from "./store/reducers/wish";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -20,14 +21,15 @@ const rootReducer = combineReducers({
   auth: AuthReducer,
   address: AddressReducer,
   admin: AdminReducer,
+  wish: wishReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    "open-sans": require("./assets/fonts/officinasanblkitctt.ttf"),
+    "open-sans-bold": require("./assets/fonts/officinasanblkitctt.ttf"),
   });
 };
 

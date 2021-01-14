@@ -11,6 +11,7 @@ import ProductsOverviewScreen from "../screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "../screens/shop/ProductDetailsScreen";
 import OrdersScreen from "../screens/shop/OrdersScreen";
 import CartScreen from "../screens/shop/CartScreen";
+import WishListScreen from "../screens/shop/WishlistScreen";
 // import UserProductsScreen from "../screens/user/UseProductsScreen";
 // import EditProductScreen from "../screens/user/EditProductScreen";
 import GoogleAuthScreen from "../screens/user/GoogleAuthScreen";
@@ -25,18 +26,52 @@ import * as authActions from "../store/actions/Auth";
 
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+
+
+const nonShodwoOptions = {
+   headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+    elevation: 0,
+
+  },
+  headerTitleStyle: {
+    fontFamily: "open-sans-bold",
+    color: '#727272'
+  },
+  headerBackTitleStyle: {
+    fontFamily: "open-sans",
+
+  },
+  headerBackground: (
+    <LinearGradient
+      colors={[Colors.primary, Colors.secondary]}
+      style={{ flex: 1 }}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+    />
+  ),
+  // headerTitleStyle: { color: '#fff' },
+  headerTintColor: Platform.OS === "android" ? "black" : Colors.primary,
+}
 
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+    elevation: 0,
+
   },
   headerTitleStyle: {
     fontFamily: "open-sans-bold",
+    color: '#727272'
+
+
   },
   headerBackTitleStyle: {
     fontFamily: "open-sans",
   },
-  headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
+  
+  headerTintColor: Platform.OS === "android" ? "black" : Colors.primary,
 };
 
 const ProductsNavigator = createStackNavigator(
@@ -55,7 +90,7 @@ const ProductsNavigator = createStackNavigator(
         />
       ),
     },
-    defaultNavigationOptions: defaultNavOptions,
+    defaultNavigationOptions: nonShodwoOptions,
   }
 );
 
@@ -114,6 +149,24 @@ const SearchNavigator = createStackNavigator(
   }
 );
 
+const WishlistNavigator = createStackNavigator(
+  {
+    Wishlist: WishListScreen,
+  },
+  {
+    navigationOptions: {
+      drawerIcon: (drawerConfig) => (
+        <Ionicons
+          name={Platform.OS === "android" ? "md-heart" : "md-heart"}
+          size={23}
+          color={drawerConfig.tintColor}
+        />
+      ),
+    },
+    defaultNavigationOptions: defaultNavOptions,
+  }
+);
+
 const AddressNavigator = createStackNavigator(
   {
     Address: AddressScreen,
@@ -137,6 +190,7 @@ const ShopNavigator = createDrawerNavigator(
   {
     Products: ProductsNavigator,
     Search: SearchNavigator,
+    Wishlist: WishlistNavigator,
     Address: AddressNavigator,
     Orders: OrdersNavigator,
     // Admin: adminNavigator,

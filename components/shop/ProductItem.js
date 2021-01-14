@@ -20,7 +20,7 @@ const ProductItem = (props) => {
             <View style={styles.details}>
               <Text style={styles.title}>{props.title}</Text>
               <View style={styles.priceRow}>
-                <Text style={styles.price}>₹{props.oldPrice}</Text>
+                {/* <Text style={styles.price}>₹{props.oldPrice}</Text> */}
                 <Text style={styles.newPrice}>₹{props.price.toFixed(2)}</Text>
               </View>
             </View>
@@ -36,14 +36,14 @@ const ProductItem = (props) => {
 
 const styles = StyleSheet.create({
   product: {
-    margin: 10,
+    margin: 3,
     // alignItems: "center",
     flex: 1,
     // justifyContent: "center",
     elevation: 4,
     borderRadius: 10,
     backgroundColor: "white",
-    height: 250,
+    height: 210,
   },
   touchable: {
     borderRadius: 10,
@@ -61,32 +61,32 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
-    fontSize: 13,
+    fontSize: 12,
     marginVertical: 2,
     fontFamily: "open-sans-bold",
   },
-  price: {
-    fontSize: 14,
+  newPrice: {
+    fontSize: 12,
     color: "#888",
-    textDecorationLine: "line-through",
-    fontFamily: "open-sans",
+    // textDecorationLine: "line-through",
+    fontFamily: "open-sans-bold",
   },
   details: {
     alignItems: "center",
     height: "20%",
-    padding: 10,
+    padding: 5,
   },
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     alignItems: "center",
     height: "20%",
   },
   action: {
     flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: 25,
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
     alignItems: "center",
     height: "20%",
   },
@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 10,
   },
-  newPrice: {
-    paddingLeft: 5,
-  },
+  // newPrice: {
+  //   paddingLeft: 5,
+  // },
 });
 
 export default ProductItem;

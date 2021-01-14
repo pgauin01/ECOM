@@ -53,6 +53,8 @@ class Crousel extends Component {
       <View style={{ marginTop: 5, height: "100%", width: "100%" }}>
         <ScrollView
           horizontal
+          showsVerticalScrollIndicator ={false}
+          showsHorizontalScrollIndicator={false}
           pagingEnabled
           onMomentumScrollEnd={this.changeSelectedIndex}
           ref={this.scrollRef}

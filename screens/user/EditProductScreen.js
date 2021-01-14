@@ -49,8 +49,13 @@ const EditProductScreen = (props) => {
   const editedProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   );
-  console.log(editedProduct);
-  const updatedImage = editedProduct.imageUrl;
+  // console.log(editedProduct);
+  let updatedImage;
+  if(editedProduct){
+  updatedImage = editedProduct.imageUrl;
+ }
+
+ console.log(updatedImage)
   const [checked, setIsChecked] = useState(
     editedProduct ? editedProduct.inStock : true
   );
@@ -62,8 +67,8 @@ const EditProductScreen = (props) => {
   const [imgName, setImageName] = useState();
   const [image, setImage] = useState();
 
-  // console.log(editedProduct.inStock);
 
+  
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {

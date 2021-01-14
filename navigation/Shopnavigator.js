@@ -25,12 +25,31 @@ import * as adminActions from "../store/actions/Admin";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
+const nonShodwoOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primary : "",
+    elevation: 0,
+
+  },
+  headerTitleStyle: {
+    fontFamily: "open-sans-bold",
+    color: '#727272'
+
+  },
+  headerBackTitleStyle: {
+    fontFamily: "open-sans",
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
+}
+
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primary : "",
   },
   headerTitleStyle: {
     fontFamily: "open-sans-bold",
+    color: '#727272'
+
   },
   headerBackTitleStyle: {
     fontFamily: "open-sans",
@@ -54,7 +73,7 @@ const ProductsNavigator = createStackNavigator(
         />
       ),
     },
-    defaultNavigationOptions: defaultNavOptions,
+    defaultNavigationOptions: nonShodwoOptions,
   }
 );
 

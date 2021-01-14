@@ -17,7 +17,7 @@ export const fetchOrders = () => {
           throw new Error("Something went wrong");
         }
         const resData = await response.json();
-        console.log(resData);
+        // console.log(resData);
         const loadedOrders = [];
         for (const key in resData) {
           for (const newkey in resData[key]) {

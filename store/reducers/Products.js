@@ -11,7 +11,6 @@ const initialState = {
   availableProducts: [],
   userProducts: [],
 };
-// console.log(initialState.userProducts);
 
 export default (state = initialState, action) => {
   switch (action.type) {

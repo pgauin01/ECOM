@@ -1,9 +1,11 @@
 import { AsyncStorage } from "react-native";
 // export const SIGN_UP = "SIGN_UP";
 // export const LOGIN = "LOGIN";
+import { IS_ADMIN, LOG_OUT } from "../actions/Admin";
+
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
-// let timer;
+// let timer;x
 
 export const authenticate = (token, userId) => {
   return (dispatch) => {
@@ -154,7 +156,6 @@ export const Googlelogin = (GidToken) => {
       throw new Error("Something went wrong in googleAuth");
     }
 
-  
     const resData = await response.json();
     console.log(resData);
     dispatch(
